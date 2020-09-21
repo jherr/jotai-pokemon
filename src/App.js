@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Provider } from "jotai";
+
+import "./App.css";
+
+import FilterInput from "./FilterInput";
+import PokemonTable from "./PokemonTable";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <FilterInput />
+      <PokemonTable />
     </div>
   );
 }
 
-export default App;
+export default () => (
+  <Provider>
+    <React.Suspense fallback={<div>Loading</div>}>
+      <App />
+    </React.Suspense>
+  </Provider>
+);
